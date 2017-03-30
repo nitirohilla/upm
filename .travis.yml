@@ -32,11 +32,11 @@ script:
   # Build/install MRAA
   - echo "CC=$CC BUILDJAVA=$BUILDJAVA NODE010=$NODE010 NODE012=$NODE012 NODE4=$NODE4 NODE5=$NODE5 NODE_ROOT_DIR=$NODE_ROOT_DIR"
   - git clone https://github.com/intel-iot-devkit/mraa.git $MRAA_ROOT
-  - mkdir -p $MRAA_BUILD && cd $_ && cmake -DBUILDSWIGJAVA=$BUILDJAVA -DBUILDSWIGNODE=OFF -DBUILDSWIGPYTHON=ON -DFIRMATA=ON -DENABLEEXAMPLES=OFF $MRAA_ROOT
+  - mkdir -p $MRAA_BUILD && cd $_ && cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DBUILDSWIGJAVA=$BUILDJAVA -DBUILDSWIGNODE=OFF -DBUILDSWIGPYTHON=ON -DFIRMATA=ON -DENABLEEXAMPLES=OFF $MRAA_ROOT
   - sudo make install
   - sudo ldconfig
   # Build/install UPM
-  - cd $UPM_ROOT && mkdir $UPM_BUILD && cd $_ && cmake -DNODE_ROOT_DIR:PATH="${NODE_ROOT_DIR}" -DBUILDSWIGJAVA=$BUILDJAVA -DBUILDEXAMPLES=ON -DBUILDTESTS=ON -DBUILDFTI=ON .. && sudo make install && sudo ldconfig && ctest --output-on-failure -E examplenames_js
+  - cd $UPM_ROOT && mkdir $UPM_BUILD && cd $_ && cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr/local -DNODE_ROOT_DIR:PATH="${NODE_ROOT_DIR}" -DBUILDSWIGJAVA=$BUILDJAVA -DBUILDEXAMPLES=ON -DBUILDTESTS=ON -DBUILDFTI=ON .. && sudo make install && sudo ldconfig && ctest --output-on-failure -E examplenames_js
 addons:
   apt:
     sources:

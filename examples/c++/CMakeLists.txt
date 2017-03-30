@@ -339,6 +339,7 @@ add_example (tmp006)
 add_example (mma8x5x)
 add_example (mag3110)
 add_example (hdc1000)
+add_example (elementzir)
 
 # These are special cases where you specify example binary, source file and module(s)
 include_directories (${PROJECT_SOURCE_DIR}/src)
